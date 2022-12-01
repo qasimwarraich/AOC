@@ -1,9 +1,10 @@
 use std::{
+    error::Error,
     fs::File,
-    io::{self, BufRead, BufReader},
+    io::{BufRead, BufReader},
 };
 
-fn main() -> Result<(), io::Error> {
+fn main() -> Result<(), Box<dyn Error>> {
     let filename = "./input.txt";
     let file = File::open(filename)?;
     let reader = BufReader::new(file);
@@ -20,11 +21,11 @@ fn main() -> Result<(), io::Error> {
             }
             counter = 0;
         } else {
-            let count: i32 = line.parse().unwrap();
+            let count: i32 = line.parse()?;
             counter += count;
         }
     }
-    println!("Highest Calories: {}", max);
 
+    println!("Highest Calories: {}", max);
     Ok(())
 }
