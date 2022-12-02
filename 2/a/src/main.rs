@@ -18,12 +18,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     for (_index, line) in lines {
         let line = line?;
         let char_vec = &line.split(" ").collect::<Vec<&str>>();
-        let p1 = game_code.get(char_vec[0]).unwrap();
-        let p2 = game_code.get(char_vec[1]).unwrap();
+        let p1 = game_code[char_vec[0]];
+        let p2 = game_code[char_vec[1]];
 
         if p1 == p2 {
             total_score += 3 + p2;
-        } else if moves[p1 % 3] == *p2 {
+        } else if moves[p1 % 3] == p2 {
             total_score += 6 + p2;
         } else {
             total_score += p2;
