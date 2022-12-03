@@ -13,7 +13,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut duplicates: Vec<char> = Vec::new();
     let alphabet: Vec<char> = ('a'..='z').chain('A'..='Z').collect();
 
-    for (_index, line) in reader.lines().enumerate() {
+    for line in reader.lines(){
         let line = line?;
         let half = line.len() / 2;
 
