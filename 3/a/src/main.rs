@@ -11,9 +11,9 @@ fn main() -> Result<(), Box<dyn Error>> {
     let reader = BufReader::new(file);
 
     let mut duplicates: Vec<char> = Vec::new();
-    let chars: Vec<char> = ('a'..='z').chain('A'..='Z').collect();
+    let alphabet: Vec<char> = ('a'..='z').chain('A'..='Z').collect();
 
-    for (_ind, line) in reader.lines().enumerate() {
+    for (_index, line) in reader.lines().enumerate() {
         let line = line?;
         let half = line.len() / 2;
 
@@ -35,7 +35,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let mut sum = 0;
     for item in duplicates {
-        let value = chars
+        let value = alphabet
             .to_owned()
             .into_iter()
             .position(|x| x == item)
