@@ -14,8 +14,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         for range in pair_range {
             let range: Vec<String> = range.split('-').map(|x| x.to_string()).collect();
             let range: Vec<i32> = range.iter().map(|x| x.parse::<i32>().unwrap()).collect();
-            let spam = range.clone();
-            ranges.push(spam.to_owned());
+            ranges.push(range);
         }
 
         let range1 = ranges[0][0]..=ranges[0][1];
