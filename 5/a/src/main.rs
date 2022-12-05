@@ -54,15 +54,14 @@ fn init_stacks(
     Ok(())
 }
 
-fn create_main_stack(column_finder: &Vec<String>) -> Result<Vec<Vec<String>>, Box<dyn Error>>{
-
+fn create_main_stack(column_finder: &Vec<String>) -> Result<Vec<Vec<String>>, Box<dyn Error>> {
     let mut main_stack: Vec<Vec<String>> = Vec::new();
     let num_cols = column_finder[column_finder.len() - 3].parse::<usize>()?;
 
     for _ in 0..num_cols {
         main_stack.push(vec![]);
     }
-    
+
     Ok(main_stack)
 }
 
@@ -87,6 +86,5 @@ fn parse_file(file: String) -> (Vec<String>, Vec<String>) {
 
     let stacks: Vec<String> = stacks.split("\n").map(|x| x.to_string()).collect();
     let instructions: Vec<String> = instructions.split("\n").map(|x| x.to_string()).collect();
-
     return (stacks, instructions);
 }
