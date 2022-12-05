@@ -6,9 +6,9 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let (stacks, instructions) = parse_file(file);
     let column_finder = create_finder(&stacks);
-    let mut main_stack = create_main_stack(column_finder)?;
+    let mut main_stack = create_main_stack(&column_finder)?;
 
-    init_stacks(stacks, &mut main_stack, column_finder)?;
+    init_stacks(stacks, &mut main_stack, &column_finder)?;
     move_crates(instructions, &mut main_stack);
 
     let result = assemble_result(&mut main_stack);
@@ -40,7 +40,7 @@ fn move_crates(instructions: Vec<String>, main_stack: &mut Vec<Vec<String>>) {
 fn init_stacks(
     stacks: Vec<String>,
     main_stack: &mut Vec<Vec<String>>,
-    column_finder: Vec<String>,
+    column_finder: &Vec<String>,
 ) -> Result<(), Box<dyn Error>> {
     for line in &stacks {
         let row_chars: Vec<char> = line.chars().collect();
@@ -54,7 +54,7 @@ fn init_stacks(
     Ok(())
 }
 
-fn create_main_stack(column_finder: Vec<String>) -> Result<Vec<Vec<String>>, Box<dyn Error>>{
+fn create_main_stack(column_finder: &Vec<String>) -> Result<Vec<Vec<String>>, Box<dyn Error>>{
 
     let mut main_stack: Vec<Vec<String>> = Vec::new();
     let num_cols = column_finder[column_finder.len() - 3].parse::<usize>()?;
