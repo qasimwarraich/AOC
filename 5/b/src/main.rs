@@ -33,19 +33,22 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 
     for instruction in instructions {
-        let ivec: Vec<String> = instruction.split(" ").map(|x| x.to_string()).collect();
+        let ivec: Vec<usize> = instruction
+            .split_whitespace()
+            .filter_map(|token| token.parse().ok())
+            .collect();
 
-        let amount = ivec[1].parse::<i32>()?;
-        let src = ivec[3].parse::<i32>()? - 1;
-        let dst = ivec[5].parse::<i32>()? - 1;
+        let amount = ivec[0];
+        let src = ivec[1] - 1;
+        let dst = ivec[2] - 1;
 
         let mut load: Vec<String> = Vec::new();
         for _i in 0..amount {
-            if let Some(elem) = main_stack[src as usize].pop() {
+            if let Some(elem) = main_stack[src].pop() {
                 load.insert(0, elem);
             }
         }
-        main_stack[dst as usize].append(&mut load);
+        main_stack[dst].append(&mut load);
     }
 
     let mut result: String = String::new();
