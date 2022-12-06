@@ -7,13 +7,10 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     let windows = file_vec[1..].windows(message_len);
 
-    for window in windows {
+    for (index, window) in windows.enumerate() {
         let set = window.iter().collect::<HashSet<_>>();
         if set.len() == message_len {
-            let search = window.concat();
-            let index = file.find(search.as_str());
-            let res = index.unwrap() + message_len;
-            println!("res = {:?}", res);
+            println!("res = {:?}", index + message_len);
             break;
         }
     }
