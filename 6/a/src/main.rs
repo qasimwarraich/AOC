@@ -8,8 +8,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let windows = file_vec[1..].windows(message_len);
 
     for (index, window) in windows.enumerate() {
-        let set = window.iter().collect::<HashSet<_>>();
-        if set.len() == message_len {
+        let mut set = HashSet::new();
+        if window.iter().all(|el| set.insert(el)) {
             println!("res = {:?}", index + message_len);
             break;
         }
