@@ -14,15 +14,13 @@ fn main() {
         forest.push(tree_line);
     }
 
-    let grid_width = forest[0].len();
-
     for (tree_line, row) in forest.iter().enumerate() {
         if tree_line == 0 || tree_line == forest.len() - 1 {
             tree_count += row.len();
             continue;
         }
         for (index, tree) in row.iter().enumerate() {
-            if index == 0 || index == grid_width - 1 {
+            if index == 0 || index == forest.len() - 1 {
                 tree_count += 1;
                 continue;
             }
