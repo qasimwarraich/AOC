@@ -12,6 +12,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     let mut x_reg = 1;
     let mut _cycle = 0;
     let mut pos = 0;
+    let screen_width = 39;
 
     for command in file_vec {
         if command.starts_with("addx") {
@@ -20,7 +21,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
             for _i in 0..2 {
                 _cycle += 1;
-                if pos == 39 {
+                if pos == screen_width {
                     pos = 0;
                     println!("");
                     continue;
@@ -35,7 +36,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             x_reg += num
         } else {
             _cycle += 1;
-            if pos == 39 {
+            if pos == screen_width {
                 pos = 0;
                 println!("");
                 continue;
