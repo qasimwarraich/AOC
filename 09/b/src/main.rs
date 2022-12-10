@@ -14,7 +14,6 @@ struct Pos {
 
 fn main() {
     let file = include_str!("./input.txt");
-    // let file = include_str!("./input.test");
     let file_vec: Vec<_> = file.trim_end().split("\n").collect();
     let mut move_vec: Vec<Move> = Vec::new();
     let mut move_set: HashSet<Pos> = HashSet::new();
@@ -43,8 +42,6 @@ fn main() {
     ];
 
     for step in &move_vec {
-        println!("________________________________________");
-        println!("step = {:?}", step);
         for _i in 0..step.steps {
             if step.direction == "L" {
                 rope[0].x -= 1;
@@ -95,6 +92,5 @@ fn main() {
         }
     }
 
-    println!("move_vec = {:?}", move_set);
     println!("move_set = {:?}", move_set.len());
 }
