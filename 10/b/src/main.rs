@@ -28,7 +28,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 if pos == x_reg - 1 || pos == x_reg || pos == x_reg + 1 {
                     print!("#")
                 } else {
-                    print!(".")
+                    print!(" ")
                 }
                 pos += 1
             }
@@ -43,7 +43,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             if pos == x_reg - 1 || pos == x_reg || pos == x_reg + 1 {
                 print!("#")
             } else {
-                print!(".")
+                print!(" ")
             }
             pos += 1
         }
