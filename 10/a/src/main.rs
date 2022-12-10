@@ -9,8 +9,6 @@ fn main() -> Result<(), Box<dyn Error>> {
         .map(|el| el.to_string())
         .collect();
 
-    println!("file_vec = {:?}", file_vec);
-
     let cycles: Vec<i32> = vec![20, 60, 100, 140, 180, 220];
     let mut results: Vec<i32> = Vec::new();
     let mut x_reg = 1;
@@ -24,7 +22,6 @@ fn main() -> Result<(), Box<dyn Error>> {
             for _i in 0..2 {
                 cycle += 1;
                 if cycles.contains(&cycle) {
-                    println!("cycles {:?} = {:?}", cycle, x_reg);
                     results.push(cycle * x_reg)
                 }
             }
@@ -32,14 +29,12 @@ fn main() -> Result<(), Box<dyn Error>> {
         } else {
             cycle += 1;
             if cycles.contains(&cycle) {
-                println!("cycles {:?} = {:?}", cycle, x_reg);
                 results.push(cycle * x_reg)
             }
         }
     }
 
     let res: i32 = results.iter().sum();
-    println!("results = {:?}", results);
     println!("res = {:?}", res);
 
     Ok(())
