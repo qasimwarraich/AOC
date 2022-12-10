@@ -10,7 +10,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .collect();
 
     let mut x_reg = 1;
-    let mut cycle = 0;
+    let mut _cycle = 0;
     let mut pos = 0;
 
     for command in file_vec {
@@ -19,13 +19,13 @@ fn main() -> Result<(), Box<dyn Error>> {
             let num: i32 = command[1].parse()?;
 
             for _i in 0..2 {
-                cycle += 1;
+                _cycle += 1;
                 if pos == 39 {
                     pos = 0;
                     println!("");
                     continue;
                 }
-                if pos == x_reg - 1 || pos == x_reg || pos == x_reg + 1 {
+                if ((x_reg - 1)..=(x_reg +1)).contains(&pos)  {
                     print!("#")
                 } else {
                     print!(" ")
@@ -34,13 +34,13 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
             x_reg += num
         } else {
-            cycle += 1;
+            _cycle += 1;
             if pos == 39 {
                 pos = 0;
                 println!("");
                 continue;
             }
-            if pos == x_reg - 1 || pos == x_reg || pos == x_reg + 1 {
+            if ((x_reg - 1)..=(x_reg +1)).contains(&pos) {
                 print!("#")
             } else {
                 print!(" ")
