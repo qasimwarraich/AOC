@@ -25,7 +25,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                     println!("");
                     continue;
                 }
-                if ((x_reg - 1)..=(x_reg +1)).contains(&pos)  {
+                if ((x_reg - 1)..=(x_reg + 1)).contains(&pos) {
                     print!("#")
                 } else {
                     print!(" ")
@@ -40,7 +40,7 @@ fn main() -> Result<(), Box<dyn Error>> {
                 println!("");
                 continue;
             }
-            if ((x_reg - 1)..=(x_reg +1)).contains(&pos) {
+            if ((x_reg - 1)..=(x_reg + 1)).contains(&pos) {
                 print!("#")
             } else {
                 print!(" ")
