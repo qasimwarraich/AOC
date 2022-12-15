@@ -19,7 +19,7 @@ struct Pos {
 fn main() -> Result<(), Box<dyn Error>> {
     let file = include_str!("./input.txt");
 
-    let (map, rows, cols, start, end) = parse_file(file);
+    let (map, rows, cols, _start, end) = parse_file(file);
 
     let mut pq = BinaryHeap::new();
     let mut visited = HashSet::new();
