@@ -75,28 +75,32 @@ fn main() -> Result<(), Box<dyn Error>> {
         &root_rhs,
     );
 
-
-
-    recurse_to_val(&pairings, &root_lhs);
+    let recurse = recurse_to_val(&pairings, &root_rhs);
+    println!("recurse = {:?}", recurse);
 
     Ok(())
 }
 
-fn recurse_to_val(pairings: &HashMap<String, Instruction>, name: &String) {
-
+fn recurse_to_val(pairings: &HashMap<String, Instruction>, name: &String) -> i64 {
+    println!("name = {:?}", name);
     let spam = &pairings[name];
 
     println!("spam = {:?}", spam);
+    let mut value = 0;
     match spam {
-        Instruction::Val(_) => println!("It's a value!"),
-        Instruction::Pair(pair) => recurse_to_val(pairings, &pair.lhs )
+        Instruction::Val(val) => return val.val,
+        Instruction::Pair(pair) => {
+            match pair.op.as_str() {
+                "-" =>  value = recurse_to_val(pairings, &pair.lhs) - recurse_to_val(pairings, &pair.rhs),
+                "+" =>  value = recurse_to_val(pairings, &pair.lhs) + recurse_to_val(pairings, &pair.rhs),
+                "/" =>  value = recurse_to_val(pairings, &pair.lhs) / recurse_to_val(pairings, &pair.rhs),
+                "*" =>  value = recurse_to_val(pairings, &pair.lhs) * recurse_to_val(pairings, &pair.rhs),
+                _ => println!("wtf"),
+            }
+        }
     }
-
-    
+    return value;
 }
-
-
-
 
 fn monkey_business(
     instruction_vec: Vec<Vec<String>>,
